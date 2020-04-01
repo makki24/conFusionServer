@@ -37,58 +37,36 @@ app.use(session({
     store :new FileStore()
 }));
 
+app.use('/', indexRouter);
+app.use('/users', usersRouter);
+
 function auth(req,res,next)
 {
   console.log(req.session);
 
   if(!req.session.user)
   {
-        var authHeader =req.headers.authorization;
-        if(!authHeader)
-        {
-            var err =new Error("You are not authenticated");
-            res.setHeader("WWW-Authenticate","Basic");
-            err.status=401;
-            next(err);
-            return;
-        }
-
-        var autha = new Buffer.from(authHeader.split(" ")[1],"base64").toString().split(":");
-        if(autha[0]=='admin' && autha[1]=='password')
-        {
-            req.session.user ='admin';
-            next();
-        }
-        else
-        {
-            var err =new Error("You are not authenticated");
-            res.setHeader("WWW-Authenticate","Basic");
-            err.status =401;
-            next(err);
-            return;
-        }
+      var err=new Error('you are not autheciated');
+      err.status=403;
+      return next(err);
   }
-
   else
   {
-       if(req.session.user==='admin')
-       {
-           next();
-       }
-       else
-       {
-          var err =new Error("You are not authenticated");
-          err.status =401;
-          next(err);
-       }
+      if(req.session.user==='authenciated')
+      {
+          next();
+      }
+      else
+      {
+          var err = new Error('You are not authenticated!');
+          err.status = 403;
+          return next(err);
+      }
   }
 }
 
 app.use(auth);
 app.use(express.static(path.join(__dirname, 'public')));
-
-app.use('/', indexRouter);
-app.use('/users', usersRouter);
 
 const dishRouter = require('./routes/dishRouter');
 app.use('/dishes',dishRouter);
