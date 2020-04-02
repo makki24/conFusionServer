@@ -18,7 +18,7 @@ promoRouter.route('/')
         },(err)=>next(err))
         .catch(err=>next(err));
 })
-.post(authenticate.verifyUser,(req,res,next) =>
+.post(authenticate.verifyUser,authenticate.verifyAdmin,(req,res,next) =>
 {
    promotions.create(req.body)
        .then((promotion) =>
@@ -29,11 +29,11 @@ promoRouter.route('/')
         },(err)=>next(err))
         .catch(err=>next(err));
 })
-.put(authenticate.verifyUser,(req,res,next) =>{
+.put(authenticate.verifyUser,authenticate.verifyAdmin,(req,res,next) =>{
     res.statusCode=403;
     res.end('PUT method is not supported');
 })
-.delete(authenticate.verifyUser,(req,res,next) =>
+.delete(authenticate.verifyUser,authenticate.verifyAdmin,(req,res,next) =>
 {
     promotions.remove({})
         .then((resp) =>
@@ -57,12 +57,12 @@ promoRouter.route('/:promoId/')
         },(err)=>next(err))
         .catch(err=>next(err));
 })
-.post(authenticate.verifyUser,(req,res,next) =>
+.post(authenticate.verifyUser,authenticate.verifyAdmin,(req,res,next) =>
 {
     res.statusCode=403
     res.end('post operation not supported '+ req.params.promoId);
 })
-.put(authenticate.verifyUser,(req,res,next) =>
+.put(authenticate.verifyUser,authenticate.verifyAdmin,(req,res,next) =>
 {
     promotions.findByIdAndUpdate(req.params.promoId,{$set:req.body},{new:true})
         .then((promotion) =>
@@ -72,7 +72,7 @@ promoRouter.route('/:promoId/')
             res.json(promotion);
         })
 })
-.delete(authenticate.verifyUser,(req,res,next) =>
+.delete(authenticate.verifyUser,authenticate.verifyAdmin,(req,res,next) =>
 {
     promotions.findByIdAndRemove(req.params.promoId)
         .then((resp) =>

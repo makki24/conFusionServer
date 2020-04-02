@@ -8,10 +8,42 @@ var authenticate =require('../authenticate');
 
 router.use(bodyParser.json());
 /* GET users listing. */
-router.get('/', function(req, res, next)
+/*router.get('/', function(req, res, next)
 {
   res.send('respond with a resource');
 });
+*/
+router.route('/')
+    .get(authenticate.verifyUser,authenticate.verifyAdmin,(req,res,next) =>
+    {
+
+        users.find()
+            .then((users) =>
+            {
+                res.statusCode =200;
+                res.setHeader('Content-Type','applciation/json');
+                res.json(users);
+            },err =>next(err))
+            .catch(err=>next(err));
+    /*     console.log(req.user.username);
+       if(authenticate.verifyAdmin(req.user.username))
+        {
+            users.find({})
+                .then((users) =>
+                {
+                    res.statusCode =200;
+                    res.setHeader('Content-Type','application/json');
+                    res.json(users);
+                },err=>next(err))
+                .catch((err) => next(err));
+        }
+        else
+        {
+            var err=new Error("Not an admin user");
+            err.status=401;
+            next(err);
+        } */
+    });
 
 router.post('/signup',(req,res,next) =>
 {

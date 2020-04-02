@@ -39,4 +39,38 @@ exports.jwtPassport = passport.use(new JwtStrategy(opts,(jwt_payload,done)=>
     });
 }));
 
+
 exports.verifyUser = passport.authenticate('jwt',{session:false});
+/*
+exports.jwtPassport = passport.use(new JwtStrategy(opts,(user,done) =>
+{
+    var err=new Error("not an bla bal admin user");
+    if(user ==='admin')
+        return done(null,true);
+    else
+        return done(err,false);
+}));    */
+
+
+exports.verifyAdmin=((req,res,next) =>
+{
+    console.log(req.user);
+    if(req.user.admin)
+    {
+        next();
+    }
+    else
+    {
+        var err =new Error("you are not an admin");
+        err.status =401;
+        next(err);
+    }
+});
+/*
+exports.verifyAdmin= (user) =>
+{
+    if(user==='admin')
+        return true;
+    else
+        return false;
+} */
