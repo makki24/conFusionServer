@@ -1,0 +1,1 @@
+how to implement authenciate.verifyAdmin() and use it ?
