@@ -31,6 +31,18 @@ app.set('view engine', 'jade');
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
+
+app.all('*',(req,res,next) =>
+{
+  if(req.secure)
+  {
+    next();
+  }
+  else
+  {
+    res.redirect('https://'+req.hostname+":"+app.get('secPort')+req.url,307);
+  }
+});
 //app.use(cookieParser('12345-67890-19876-54321'));
 
 /*
