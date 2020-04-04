@@ -72,7 +72,8 @@ app.use('/leaders',leaderRouter);
 const promoRouter = require('./routes/promoRouter');
 app.use('/promotions',promoRouter);
 
-
+const imageRouter =require('./routes/uploadRouter');
+app.use('/imageUpload',imageRouter);
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   next(createError(404));
