@@ -8,12 +8,6 @@ var authenticate =require('../authenticate');
 const cors= require('./cors');
 
 router.use(bodyParser.json());
-/* GET users listing. */
-/*router.get('/', function(req, res, next)
-{
-  res.send('respond with a resource');
-});
-*/
 router.route('/')
     .get(authenticate.verifyUser,authenticate.verifyAdmin,(req,res,next) =>
     {
@@ -26,24 +20,7 @@ router.route('/')
                 res.json(users);
             },err =>next(err))
             .catch(err=>next(err));
-    /*     console.log(req.user.username);
-       if(authenticate.verifyAdmin(req.user.username))
-        {
-            users.find({})
-                .then((users) =>
-                {
-                    res.statusCode =200;
-                    res.setHeader('Content-Type','application/json');
-                    res.json(users);
-                },err=>next(err))
-                .catch((err) => next(err));
-        }
-        else
-        {
-            var err=new Error("Not an admin user");
-            err.status=401;
-            next(err);
-        } */
+
     });
 
 router.post('/signup',cors.corsWithOptions,(req,res,next) =>
@@ -78,7 +55,6 @@ router.post('/signup',cors.corsWithOptions,(req,res,next) =>
               res.setHeader('Content-Type', 'application/json');
               res.json({success: true, status: 'Registration Successful!'});
            });
-
       }
   });
 });
@@ -107,6 +83,15 @@ router.get('/logout',cors.corsWithOptions,(req,res,next) =>
     }
 })
 
-
+router.get('/facebook/token',passport.authenticate('facebook-token'),(req,res) =>
+{
+    if(req.user)
+    {
+        var token = authenticate.getToken({_id:req.user._id});
+        res.statusCode = 200;
+        res.setHeader('Content-Type', 'application/json');
+        res.json({token:token,success: true, status: 'You are successfully logged in!'});
+    }
+})
 module.exports = router;
 

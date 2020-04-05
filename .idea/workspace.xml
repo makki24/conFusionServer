@@ -1,15 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="0f749b63-54ae-498b-80de-7945041f3492" name="Default Changelist" comment="https">
-      <change afterPath="$PROJECT_DIR$/routes/cors.js" afterDir="false" />
+    <list default="true" id="0f749b63-54ae-498b-80de-7945041f3492" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/authenticate.js" beforeDir="false" afterPath="$PROJECT_DIR$/authenticate.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config.js" beforeDir="false" afterPath="$PROJECT_DIR$/config.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/users.js" beforeDir="false" afterPath="$PROJECT_DIR$/models/users.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/dishRouter.js" beforeDir="false" afterPath="$PROJECT_DIR$/routes/dishRouter.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/leaderRouter.js" beforeDir="false" afterPath="$PROJECT_DIR$/routes/leaderRouter.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/promoRouter.js" beforeDir="false" afterPath="$PROJECT_DIR$/routes/promoRouter.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/uploadRouter.js" beforeDir="false" afterPath="$PROJECT_DIR$/routes/uploadRouter.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/users.js" beforeDir="false" afterPath="$PROJECT_DIR$/routes/users.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -98,6 +96,7 @@
       <workItem from="1586009862889" duration="902000" />
       <workItem from="1586016445724" duration="2359000" />
       <workItem from="1586062251259" duration="4659000" />
+      <workItem from="1586077056813" duration="4035000" />
     </task>
     <task id="LOCAL-00001" summary="Express REST API with MongoDB and Mongoose Part 1">
       <created>1585465342661</created>
@@ -141,7 +140,14 @@
       <option name="project" value="LOCAL" />
       <updated>1585982412265</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="Cors">
+      <created>1586077107877</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1586077107877</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -154,13 +160,14 @@
     <MESSAGE value="Express Session part 1" />
     <MESSAGE value="passport jwt" />
     <MESSAGE value="https" />
-    <option name="LAST_COMMIT_MESSAGE" value="https" />
+    <MESSAGE value="Cors" />
+    <option name="LAST_COMMIT_MESSAGE" value="Cors" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="527" y="127" width="922" height="850" key="CommitChangelistDialog2" timestamp="1586009918101">
+    <state x="527" y="127" width="922" height="850" key="CommitChangelistDialog2" timestamp="1586077107727">
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
-    <state x="527" y="127" width="922" height="850" key="CommitChangelistDialog2/67.27.1853.1053@67.27.1853.1053" timestamp="1586009918101" />
+    <state x="527" y="127" width="922" height="850" key="CommitChangelistDialog2/67.27.1853.1053@67.27.1853.1053" timestamp="1586077107727" />
     <state x="776" y="310" width="424" height="484" key="FileChooserDialogImpl" timestamp="1585291965450">
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
