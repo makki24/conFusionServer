@@ -5,6 +5,7 @@ const bodyParser = require('body-parser');
 var users=require('../models/users');
 var passport =require('passport');
 var authenticate =require('../authenticate');
+const cors= require('./cors');
 
 router.use(bodyParser.json());
 /* GET users listing. */
@@ -45,7 +46,7 @@ router.route('/')
         } */
     });
 
-router.post('/signup',(req,res,next) =>
+router.post('/signup',cors.corsWithOptions,(req,res,next) =>
 {
   users.register(new users({username:req.body.username}),req.body.password,(err,user) =>
   {
@@ -82,7 +83,7 @@ router.post('/signup',(req,res,next) =>
   });
 });
 
-router.post('/login',passport.authenticate('local'),(req,res) =>
+router.post('/login',cors.corsWithOptions,passport.authenticate('local'),(req,res) =>
 {
     var token = authenticate.getToken({_id:req.user._id});
     res.statusCode = 200;
@@ -90,7 +91,7 @@ router.post('/login',passport.authenticate('local'),(req,res) =>
     res.json({token:token,success: true, status: 'You are successfully logged in!'});
 });
 
-router.get('/logout',(req,res,next) =>
+router.get('/logout',cors.corsWithOptions,(req,res,next) =>
 {
     if(req.user)
     {
